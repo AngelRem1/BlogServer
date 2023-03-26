@@ -19,10 +19,11 @@ app.use(require("./routes/recordJournals"));
 app.route("/").get((req, res) => {
   res.send("hello");
 });
-app.listen(port, () => {
-  dbo.connectToDb((err) => {
-    if (err) throw err;
-  });
 
-  console.log(`Connected to port: ${port}`);
+dbo.connectToDb((err) => {
+  if (err) throw err;
+
+  app.listen(port, () => {
+    console.log(`Connected to port: ${port}`);
+  });
 });
